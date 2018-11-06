@@ -14,6 +14,7 @@ First clone this repository
 ```
 git clone https://github.com/Busobozihakiim/SendIT-Challenge-2/tree/develop
 cd SendIT-Challenge-2
+```
 
 Then create a virtual environment and start it
 ```
