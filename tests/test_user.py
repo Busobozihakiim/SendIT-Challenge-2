@@ -56,3 +56,8 @@ class Testuser(unittest.TestCase):
         with self.app.post('api/v1/parcels', json=DELIVERY) as current:
             assert current.status_code == 201
             assert 'Delivery order created'in str(current.json)
+
+    def test_see_all_order(self):
+        """test to see all orders"""
+        with self.app.get('api/v1/parcels') as current:
+            assert current.status_code == 200

@@ -1,7 +1,7 @@
 """CONTAINS API ENDPOINTS"""
 from flask import jsonify, request
 from app.apiv1 import bp
-from .modals import Parcels
+from .modals import Parcels, PARCELS
 from .errors import bad_request
 
 @bp.route('/parcels', methods=['POST'])
@@ -28,3 +28,10 @@ def make_a_delivery_order():
     one_order.add_parcel(order['pick_up'], order['recepient'], order['drop_off'],
                          order['parcel_name'], order['description'], order['weight'])
     return jsonify("Delivery order created"), 201
+
+@bp.route('/parcels', methods=['GET'])
+def see_all_orders():
+    """To see all available delivery orders"""
+    if PARCELS:
+        return jsonify("Available Delivery Orders", PARCELS), 200
+    return jsonify("You dont have any delivery orders"), 200
