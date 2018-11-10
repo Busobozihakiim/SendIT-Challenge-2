@@ -1,6 +1,9 @@
 language: python
 python:
   - "3.6"
+branches:
+  only:
+  - develop
 install:
   - pip install coverage
   - pip install -r requirements.txt
