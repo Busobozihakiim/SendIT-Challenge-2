@@ -8,7 +8,7 @@ class Parcels:
     def __init__(self):
         pass
 
-    def add_parcel(self, pick_up, recepient, drop_off, parcel_name, description, weight):
+    def add_parcel(self, pick_up, recepient, drop_off, parcel_name, description, weight, user_id):
         """create a parcel delivery order and update the temporary store"""
         parcel = {
             'order_id' : len(PARCELS) + 1,
@@ -17,7 +17,8 @@ class Parcels:
             'drop_off':drop_off,
             'parcel_name':parcel_name,
             'description':description,
-            'weight':weight
+            'weight':weight,
+            'user_id':user_id
         }
         PARCELS.append(parcel)
         return PARCELS

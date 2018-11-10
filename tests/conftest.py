@@ -9,14 +9,16 @@ DELIVERY = {"pick_up":"ntinda",
             "drop_off":"bukoto",
             "parcel_name":"Sofa",
             "description":"L shaped brown sofa",
-            "weight":"5kgs"
+            "weight":"5kgs",
+            "user_id": "mary"
             }
 
 MISSING_KEYS = {"recepient":"John Abrahms",
                 "drop_off":"bukoto",
                 "parcel_name":"Sofa",
                 "description":"L shaped brown sofa",
-                "weight":"5kgs"
+                "weight":"5kgs",
+                "user_id": "mary"
                 }
 
 EMPTY_FIELDS = {"pick_up":"",
@@ -24,7 +26,8 @@ EMPTY_FIELDS = {"pick_up":"",
                 "drop_off":"bukoto",
                 "parcel_name":"Sofa",
                 "description":"L shaped brown sofa",
-                "weight":"5kgs"
+                "weight":"5kgs",
+                "user_id": "mary"
                }
 
 @pytest.fixture(scope='module')

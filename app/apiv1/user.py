@@ -20,13 +20,19 @@ def make_a_delivery_order():
 
     #check for missing keys
     for key in order:
-        if len(order) < 6:
+        if len(order) < 7:
             return bad_request("You are missing a required field")
+
+    #check the user id doesnt exist
+    if any(user.get('user_id') == order['user_id'] for user in PARCELS):
+        return bad_request('the user name {} already exists change it'.format(order['user_id']))
 
     #create parcel with received input
     one_order = Parcels()
-    one_order.add_parcel(order['pick_up'], order['recepient'], order['drop_off'],
-                         order['parcel_name'], order['description'], order['weight'])
+    one_order.add_parcel(order['pick_up'],
+                         order['recepient'], order['drop_off'],
+                         order['parcel_name'], order['description'],
+                         order['weight'], order['user_id'])
     return jsonify("Delivery order created"), 201
 
 @bp.route('/parcels', methods=['GET'])
