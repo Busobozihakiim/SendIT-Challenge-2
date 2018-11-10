@@ -1,0 +1,9 @@
+language: python
+python:
+  - "3.6"
+install:
+  - pip install coverage
+  - pip install requirements.txt
+script:
+  - coverage run -m pytest
+  - coverage report
