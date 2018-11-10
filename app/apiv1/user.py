@@ -35,3 +35,15 @@ def see_all_orders():
     if PARCELS:
         return jsonify("Available Delivery Orders", PARCELS), 200
     return jsonify("You dont have any delivery orders"), 200
+
+@bp.route('/parcels/<int:parcel_id>', methods=['GET'])
+def get_order_by_id(parcel_id):
+    """To see an available delivery order by its id"""
+    try:
+        if PARCELS:
+            order = [this_id for this_id in PARCELS if this_id['order_id'] == parcel_id]
+            return jsonify("Here is the delivery order of id {}".format(parcel_id), order[0]), 200
+        return jsonify("No deliveries made yet"), 200
+    except IndexError:
+        return jsonify("this delivery order of id {} doesnt exist".format(parcel_id)), 200
+        
