@@ -24,11 +24,6 @@ def test_make_order(set_up_client):
     assert response.status_code == 201
     assert 'Delivery order created'in str(response.json)
 
-def test_make_order_with_existing_user_id(set_up_client):
-    """Test to create a delivery order """
-    response = set_up_client.post('api/v1/parcels', json=DELIVERY)
-    assert response.status_code == 400
-    assert 'the user name {} already exists change it'.format('mary') in str(response.json)
 
 def test_see_all_order(set_up_client):
     """test to see all orders"""
