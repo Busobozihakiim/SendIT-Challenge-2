@@ -52,4 +52,14 @@ def get_order_by_id(parcel_id):
         return jsonify("No deliveries made yet"), 200
     except IndexError:
         return jsonify("this delivery order of id {} doesnt exist".format(parcel_id)), 200
-        
+
+@bp.route('/users/<string:userid>/parcels', methods=['GET'])
+def get_all_orders_by_userid(userid):
+    """Fetch all delivery orders by user_id"""
+    try:
+        if PARCELS:
+            order = [specified_userid for specified_userid in PARCELS if specified_userid['user_id'] == userid]
+            return jsonify("here is the delivery order of {}".format(userid), order[0]), 200
+        return jsonify("No delivery orders made yet"), 200
+    except IndexError:
+        return jsonify("The delivery order by {} doesnt exist".format(userid)), 200

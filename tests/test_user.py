@@ -45,3 +45,15 @@ def test_see_order_by_id(set_up_client):
     id_no_exist = set_up_client.get('api/v1/parcels/5')
     assert id_no_exist.status_code == 200
     assert "this delivery order of id 5 doesnt exist" in str(id_no_exist.json)
+
+def test_get_all_orders_by_userid(set_up_client):
+    """test to get all delivery orders by a specific userid"""
+    #testing with a known user id
+    using_userid = set_up_client.get('api/v1/users/mary/parcels')
+    assert using_userid.status_code == 200
+    #assert 'Here is the order of mary' in str(using_userid.json)
+    #testing when the user id is non existant
+    no_user_id = set_up_client.get('api/v1/users/fisher/parcels')
+    assert no_user_id.status_code == 200
+    assert 'The delivery order by fisher doesnt exist' in str(no_user_id.json)
+    
