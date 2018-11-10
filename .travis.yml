@@ -7,3 +7,4 @@ install:
 script:
   - coverage run -m pytest
   - coverage report
+  - coveralls
