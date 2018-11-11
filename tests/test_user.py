@@ -51,4 +51,19 @@ def test_get_all_orders_by_userid(set_up_client):
     no_user_id = set_up_client.get('api/v1/users/fisher/parcels')
     assert no_user_id.status_code == 200
     assert 'The delivery order by fisher doesnt exist' in str(no_user_id.json)
+
+def test_cancel_delivery_order(set_up_client):
+    """cancel a delivery order"""
+    response = set_up_client.put('api/v1/parcels/3/cancel')
+    assert response.status_code == 200
+    assert 'Delivery order 3 not found' in str(response.json)
+
+def test_cancel_delivery_order_with_order(set_up_client):
+    """cancel a delivery order"""
+    #testing with a delivery order in place
+    response = set_up_client.post('api/v1/parcels', json=DELIVERY)
+    assert response.status_code == 201
+    resp = set_up_client.put('api/v1/parcels/1/cancel')
+    assert resp.status_code == 200
+    assert 'delivery order has been canceled' in str(resp.json)
     

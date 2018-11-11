@@ -42,7 +42,7 @@ def get_order_by_id(parcel_id):
     """To see an available delivery order by its id"""
     try:
         if PARCELS:
-            order = [this_id for this_id in PARCELS if this_id['order_id'] == parcel_id]
+            order = [this_id for this_id in PARCELS if this_id['parcel_id'] == parcel_id]
             return jsonify("Here is the delivery order of id {}".format(parcel_id), order[0]), 200
         return jsonify("No deliveries made yet"), 200
     except IndexError:
@@ -53,8 +53,21 @@ def get_all_orders_by_userid(userid):
     """Fetch all delivery orders by user_id"""
     try:
         if PARCELS:
-            order = [specified_userid for specified_userid in PARCELS if specified_userid['user_id'] == userid]
+            order = [userid for userid in PARCELS if userid['user_id'] == userid]
             return jsonify("here is the delivery order of {}".format(userid), order[0]), 200
         return jsonify("No delivery orders made yet"), 200
     except IndexError:
         return jsonify("The delivery order by {} doesnt exist".format(userid)), 200
+
+@bp.route('/parcels/<int:parcel_id>/cancel', methods=['PUT'])
+def cancel_delivery_order(parcel_id):
+    """Cancel a parcel delivery order"""
+    try:
+        if PARCELS:
+            order = [this_order for this_order in PARCELS if this_order['parcel_id'] == parcel_id]
+            order[0]['status'] = 'Cancel'
+            return jsonify('delivery order has been canceled'), 200
+        return jsonify('You have no delivery orders')
+    except IndexError:
+        return jsonify('Delivery order {} not found'.format(parcel_id)), 200
+        
