@@ -4,29 +4,24 @@ from app import create_app
 
 EMPTY_ORDER = {}
 
-DELIVERY = {"pick_up":"ntinda",
-            "recepient":"John Abrahms",
+DELIVERY = {"pick_up":"ntinda",            
             "drop_off":"bukoto",
             "parcel_name":"Sofa",
-            "description":"L shaped brown sofa",
-            "weight":"5kgs",
+            "description":"L shaped brown sofa",            
             "user_id": "mary"
             }
 
-MISSING_KEYS = {"recepient":"John Abrahms",
+MISSING_KEYS = {
                 "drop_off":"bukoto",
                 "parcel_name":"Sofa",
-                "description":"L shaped brown sofa",
-                "weight":"5kgs",
+                "description":"L shaped brown sofa",                
                 "user_id": "mary"
                 }
 
-EMPTY_FIELDS = {"pick_up":"",
-                "recepient":"John Abrahms",
+EMPTY_FIELDS = {"pick_up":"",                
                 "drop_off":"bukoto",
                 "parcel_name":"Sofa",
-                "description":"L shaped brown sofa",
-                "weight":"5kgs",
+                "description":"L shaped brown sofa",                
                 "user_id": "mary"
                }
 

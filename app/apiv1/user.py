@@ -1,19 +1,18 @@
 """CONTAINS API ENDPOINTS"""
 from flask import jsonify, request
 from app.apiv1 import bp
-from .modals import Parcels, PARCELS
+from .modals import add_parcel, PARCELS
 from .errors import bad_request
 
 @bp.route('/parcels', methods=['POST'])
 def make_a_delivery_order():
     """Create a parcel delivery order"""
     order = request.get_json() or {}
-
     #check for an empty post and missing keys
     if not order:
         return bad_request("You entered nothing")
     for key in order:
-        if len(order) < 7:
+        if len(order) < 5:
             return bad_request("You are missing a required field")
 
     #check for empty values in post and return missing field
@@ -21,11 +20,9 @@ def make_a_delivery_order():
         if value == "":
             return bad_request("You are missing {} in your input".format(key))
 
-    one_order = Parcels()
-    one_order.add_parcel(order['pick_up'],
-                         order['recepient'], order['drop_off'],
-                         order['parcel_name'], order['description'],
-                         order['weight'], order['user_id'])
+    #create a delivery order
+    add_parcel(order['pick_up'], order['drop_off'], order['parcel_name'],
+               order['description'], order['user_id'])
     return jsonify("Delivery order created"), 201
 
 @bp.route('/parcels', methods=['GET'])
@@ -50,10 +47,10 @@ def get_order_by_id(parcel_id):
 def get_all_orders_by_userid(userid):
     """Fetch all delivery orders by user_id"""
     try:
-        if PARCELS:
-            order = [userid for userid in PARCELS if userid['user_id'] == userid]
-            return jsonify("here is the delivery order of {}".format(userid), order[0]), 200
-        return jsonify("No delivery orders made yet"), 200
+        if not PARCELS:
+            return jsonify("You have not made any delivery orders"), 200
+        orderByid = [userid for userid in PARCELS if userid['user_id'] == userid]
+        return jsonify("here is the delivery order of {}".format(userid), orderByid[0]), 200
     except IndexError:
         return jsonify("The delivery order by {} doesnt exist".format(userid)), 200
 
@@ -62,10 +59,9 @@ def cancel_delivery_order(parcel_id):
     """Cancel a parcel delivery order"""
     try:
         if PARCELS:
-            order = [this_order for this_order in PARCELS if this_order['parcel_id'] == parcel_id]
-            order[0]['status'] = 'Cancel'
+            cancel = [this_order for this_order in PARCELS if this_order['parcel_id'] == parcel_id]
+            cancel[0]['status'] = 'Cancel'
             return jsonify('delivery order has been canceled'), 200
         return jsonify('You have no delivery orders')
     except IndexError:
-        return jsonify('Delivery order {} not found'.format(parcel_id)), 200
-        
+        return jsonify('Delivery order {} not found'.format(parcel_id)), 200        
