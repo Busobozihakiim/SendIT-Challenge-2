@@ -9,19 +9,17 @@ def make_a_delivery_order():
     """Create a parcel delivery order"""
     order = request.get_json() or {}
 
-    #check for an empty post
+    #check for an empty post and missing keys
     if not order:
         return bad_request("You entered nothing")
+    for key in order:
+        if len(order) < 7:
+            return bad_request("You are missing a required field")
 
     #check for empty values in post and return missing field
     for key, value in order.items():
         if value == "":
             return bad_request("You are missing {} in your input".format(key))
-
-    #check for missing keys
-    for key in order:
-        if len(order) < 7:
-            return bad_request("You are missing a required field")
 
     one_order = Parcels()
     one_order.add_parcel(order['pick_up'],
