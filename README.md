@@ -40,6 +40,15 @@ To run tests run this command at the console/terminal
 ```
 pytest
 ```
+
+Use the api endpoints with an app like Postman 
+
+## Hosted on Heroku
+The online api can be found here 
+```
+https://sendit007.herokuapp.com/api/v1/parcels
+```
+
 ## API Endpoints
 |  EndPoint  |  Functionality  |
 | ------------- | ------------- |
