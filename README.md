@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Busobozihakiim/SendIT-Challenge-2.svg?branch=master)](https://travis-ci.com/Busobozihakiim/SendIT-Challenge-2)
+[![Build Status](https://travis-ci.com/Busobozihakiim/SendIT-Challenge-2.svg?branch=develop)](https://travis-ci.com/Busobozihakiim/SendIT-Challenge-2)
 [![Coverage Status](https://coveralls.io/repos/github/Busobozihakiim/SendIT-Challenge-2/badge.svg?branch=develop)](https://coveralls.io/github/Busobozihakiim/SendIT-Challenge-2?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/65e1dfa5f43053d0335a/maintainability)](https://codeclimate.com/github/Busobozihakiim/SendIT-Challenge-2/maintainability)
 # SendIT-Challenge-2
