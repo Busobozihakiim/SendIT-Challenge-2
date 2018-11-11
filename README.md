@@ -41,12 +41,22 @@ To run tests run this command at the console/terminal
 pytest
 ```
 
-Use the api endpoints with an app like Postman 
+Use the api endpoints with an app like [Postman](https://www.getpostman.com/apps) 
 
 ## Hosted on Heroku
 The online api can be found here 
-```
+
 https://sendit007.herokuapp.com/api/v1/parcels
+
+Acceptable post format
+```
+{
+ "user_id": "Jane Doe",
+ "pick_up":"ntinda",
+ "drop_off":"bukoto",
+ "parcel_name":"Sofa",
+ "description":"brown L shaped sofa"
+}
 ```
 
 ## API Endpoints
