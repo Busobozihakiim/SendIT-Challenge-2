@@ -50,7 +50,7 @@ def test_get_all_orders_by_userid(set_up_client):
     #testing when the user id is non existant
     no_user_id = set_up_client.get('api/v1/users/fisher/parcels')
     assert no_user_id.status_code == 200
-    assert 'The delivery order by fisher doesnt exist' in str(no_user_id.json)
+    assert 'The user fisher doesnt have parcels and doesnt exist' in str(no_user_id.json)
 
 def test_cancel_delivery_order(set_up_client):
     """cancel a delivery order"""
