@@ -11,7 +11,8 @@ def add_parcel(pick_up, drop_off, parcel_name, description, user_id):
         'parcel_name':parcel_name,
         'description':description,
         'user_id':user_id,
-        'status':'transit'
+        'status':'transit',
+        'location':'currently moving'
         }
     PARCELS.append(parcel)
     return PARCELS

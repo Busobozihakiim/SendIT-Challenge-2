@@ -63,4 +63,18 @@ def cancel_delivery_order(parcel_id):
             return jsonify('delivery order has been canceled'), 200
         return jsonify('You have no delivery orders')
     except IndexError:
-        return jsonify('Delivery order {} not found'.format(parcel_id)), 200        
+        return jsonify('Delivery order {} not found'.format(parcel_id)), 200
+
+@bp.route('/admin/<int:parcel_id>/<string:location>/change', methods=['PUT'])
+def change_location(parcel_id, location):
+    """changes the current location
+    Given the user id and the new location"""
+    try:
+        if PARCELS:
+            locale = [current for current in PARCELS if current['parcel_id'] == parcel_id]
+            locale[0]['location'] = '{}'.format(location)
+            return jsonify('current location has been changed')
+        return jsonify('You have no delivery orders')
+    except IndexError:
+        return bad_request('delivery order {} you are trying to change does not exist'.format(parcel_id))
+ 
